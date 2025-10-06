@@ -9,7 +9,7 @@ function mySecond() {
 
 myFirst();
 mySecond();
-//only the last one is called
+//both are called
 
 //to control a sequence
 function Displayer(some) {
@@ -39,6 +39,7 @@ function myCalculator(num1, num2, myCallback) {
 myCalculator(5, 5, myDisplayer);//here myDisplayer is the callback function
 //here calculator function run the callback after the calculation is finished
 //for callback function we should not use parantheses
+//when we use parantheses it is called immediately
 
 let Promise1 = new Promise(function(myResolve, myReject) {
 // "Producing Code" (May take some time)
@@ -138,6 +139,7 @@ Promise.allSettled([
 ]).then(results => console.log(results));
 
 //promisAny-returns the first fullfilled promise
+//ignores all the failures
 
 Promise.any([
   Promise.reject("Fail"),
@@ -158,4 +160,5 @@ function fetchData(url) {
 fetchData("valid")
   .then(data => console.log(data))
   .catch(err => console.error(err));
+
 
