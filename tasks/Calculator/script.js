@@ -75,4 +75,4 @@ resultInput.addEventListener("keydown", function(event) {
 });
 
 resultInput.focus();
-setInterval(() => resultInput.focus(), 100);
+

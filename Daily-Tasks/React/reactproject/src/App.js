@@ -1,15 +1,17 @@
-import React,{Component} from 'react';
+import React, {Component} from'react';
+import CLass1 from './Class1';
+import Function1 from './Function1';
 
 class App extends Component{
-  render() {
+  render(){
     return(
-
       <div>
-        <h1>Hi from class Componet!</h1>
+        <CLass1/>
+        <Function1 name="Counter"/>
       </div>
-    )
+    );
   }
-
 }
 
 export default App;
+
