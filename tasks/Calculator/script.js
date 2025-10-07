@@ -15,16 +15,24 @@ function resultval() {
 }
 
 function calculateResult() {
+    const resultInput = document.getElementById("result");
     try { 
         const result = eval(resultval());
-        document.getElementById("result").value = result;
-        if(result === undefined){
-            clearResult();
+
+        // If eval returns undefined
+        if (result === undefined || result === null) {
+            throw new Error("Invalid expression");
         }
+
+        resultInput.value = result;
     } catch (error) {
-        clearResult();
+        // Show error
+        resultInput.value = "Error";
+
+        // Clear after 1 second
+        setTimeout(() => clearResult(), 1000);
     }
-    document.getElementById("result").focus();
+    resultInput.focus();
 }
 
 function backspace() {
@@ -42,7 +50,7 @@ function onlyNumbers(event) {
         event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         return true;
     }   
-    event.preventDefault(); // prevent invalid keys
+    event.preventDefault();
     return false;
 }
 
@@ -57,7 +65,7 @@ resultInput.addEventListener("keydown", function(event) {
 
     if (event.key === "Backspace") {
         backspace();
-        event.preventDefault(); // prevent default backspace behavior
+        event.preventDefault(); 
     }
 
     if (event.key === "Delete") {   
@@ -66,6 +74,5 @@ resultInput.addEventListener("keydown", function(event) {
     }   
 });
 
-// Keep the input focused all the time to show caret
 resultInput.focus();
 setInterval(() => resultInput.focus(), 100);
