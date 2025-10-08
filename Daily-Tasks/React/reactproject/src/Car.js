@@ -1,8 +1,20 @@
-function Car({color, brand, ...rest}) {
+
+
+//return output if prop is passed(&& operator)
+
+function Car(props) {
   return (
-    <h2>My {brand} {rest.model} is {color}!</h2>
+    <>
+      {props.brand && <h1>My car is a {props.brand}</h1>}
+    </>
   );
 }
+
+// function Car({color, brand, ...rest}) {
+//   return (
+//     <h2>My {brand} {rest.model} is {color}!</h2>
+//   );
+// }
 
 // function Car(props) {
 
