@@ -14,6 +14,14 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Parentclass from './parent';
 import Search from './Search';
 import UseEff from './UseEff';
+import Sustrans from './suspenceTransition';
+import Button from './button';
+import ToggleSwitch from './ToggleSwitch';
+import TodoApp from './todo';
+import LoginForm from './UserLogin';
+import LiveInput from './Livetext';
+import RandomColorButton from './randomcolour';
+// import Component1 from './UseContext';
 
 const Carss=lazy(()=>import('./Lazy'));
 const MyFruits = lazy(() => import('./Suspence')); 
@@ -68,6 +76,14 @@ function App(){
         <Parentclass/>
         <Search/>
         <UseEff/>
+        <Sustrans/>
+        <Button text="Clickme"/>
+        <ToggleSwitch/>
+        <TodoApp/>
+        <LoginForm/><br></br>
+        <LiveInput/>
+        <RandomColorButton/>
+        {/* <Component1/> */}
 
         
       </div>
