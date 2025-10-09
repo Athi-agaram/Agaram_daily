@@ -83,6 +83,7 @@ function App(){
         <LoginForm/><br></br>
         <LiveInput/>
         <RandomColorButton/>
+        
         {/* <Component1/> */}
 
         

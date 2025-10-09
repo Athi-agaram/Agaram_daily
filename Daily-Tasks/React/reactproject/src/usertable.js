@@ -1,3 +1,4 @@
+import React from "react";
 
 function UserTable({ users }) {
   return (
@@ -19,5 +20,4 @@ function UserTable({ users }) {
     </table>
   );
 }
-
 export default UserTable
