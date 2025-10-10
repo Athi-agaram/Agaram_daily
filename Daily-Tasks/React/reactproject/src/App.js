@@ -21,7 +21,10 @@ import TodoApp from './todo';
 import LoginForm from './UserLogin';
 import LiveInput from './Livetext';
 import RandomColorButton from './randomcolour';
-// import Component1 from './UseContext';
+import UsernameStorage from './localstorage';
+import SessionLogin from './sessionstorage';
+import Component1 from './UseContext';
+import CookieUsername from './cookies';
 
 const Carss=lazy(()=>import('./Lazy'));
 const MyFruits = lazy(() => import('./Suspence')); 
@@ -40,55 +43,59 @@ function Contact() {
 function App(){
 
     return(
+      <CookieUsername/>
 
-      <BrowserRouter>
-                <div>
+      // <BrowserRouter>
+      //           <div>
 
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/about">About</Link> |{" "}
-        <Link to="/contact">Contact</Link>
-      </nav>
-      <a href="/about" target="_blank" rel="noopener noreferrer">About</a>
+      // <nav>
+      //   <Link to="/">Home</Link> |{" "}
+      //   <Link to="/about">About</Link> |{" "}
+      //   <Link to="/contact">Contact</Link>
+      // </nav>
+      // <a href="/about" target="_blank" rel="noopener noreferrer">About</a>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-        <Suspense fallback={<div>Loading...</div>}>Using Lazy
-          <Carss/>
-        </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
-          <MyFruits/>
-        </Suspense>
-        <CLass1/>
-        <Function1 name="Counter"/>
-        <Login />
-        <Car brand="Ford" model="Mustang" color="red" year={1969} />
-        <Lifecycle newcolor="yellow"/>
-        <Parent/>
-        <Movies/>
-        <Form/>
-        <Formsmultiple/>
-        <MyForm/>
-        <Radio/>
-        <Parentclass/>
-        <Search/>
-        <UseEff/>
-        <Sustrans/>
-        <Button text="Clickme"/>
-        <ToggleSwitch/>
-        <TodoApp/>
-        <LoginForm/><br></br>
-        <LiveInput/>
-        <RandomColorButton/>
+      // <Routes>
+      //   <Route path="/" element={<Home />} />
+      //   <Route path="/about" element={<About />} />
+      //   <Route path="/contact" element={<Contact />} />
+      // </Routes>
+      //   <Suspense fallback={<div>Loading...</div>}>Using Lazy
+      //     <Carss/>
+      //   </Suspense>
+      //   <Suspense fallback={<div>Loading...</div>}>
+      //     <MyFruits/>
+      //   </Suspense>
+      //   <CLass1/>
+      //   <Function1 name="Counter"/>
+      //   <Login />
+      //   <Car brand="Ford" model="Mustang" color="red" year={1969} />
+      //   <Lifecycle newcolor="yellow"/>
+      //   <Parent/>
+      //   <Movies/>
+      //   <Form/>
+      //   <Formsmultiple/>
+      //   <MyForm/>
+      //   <Radio/>
+      //   <Parentclass/>
+      //   <Search/>
+      //   <UseEff/>
+      //   <Sustrans/>
+      //   <Button text="Clickme"/>
+      //   <ToggleSwitch/>
+      //   <TodoApp/>
+      //   <LoginForm/><br></br>
+      //   <LiveInput/>
+      //   <RandomColorButton/>
+      //   {/* <UsernameStorage/>
+      //   <SessionLogin/>
+
         
-        {/* <Component1/> */}
+      //    <Component1/> */}
 
         
-      </div>
-          </BrowserRouter>
+      // </div>
+      //     </BrowserRouter>
 
     );
   }
