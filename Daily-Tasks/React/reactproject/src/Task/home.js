@@ -66,7 +66,7 @@ function HomePage() {
       </AppBar>
 
       <Drawer
-        variant="persistent"
+        variant="permanent"
         open={drawerOpen}
         sx={{
           width: drawerWidth,
