@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-function CookieUsername(){
-    const[username,setUsername]=useState("");
-    const[storedName,setStoredName]=useState("");
+function CookieUsername() {
+  const [username, setUsername] = useState("");
+  const [storedName, setStoredName] = useState("");
 
+  // Load cookie on mount
+  useEffect(() => {
+    const name = Cookies.get("username");
+    if (name) setStoredName(name);
+  }, []);
 
-    useEffect(()=>{
-        const name="username"
-        if(name){
-            setStoredName(name)
-        }
-    },[])
-
-  function handleSave() {
-    Cookies.set("username", username, { expires: 7, sameSite: "strict" });
+  const handleSave = () => {
+    Cookies.set("username", username, { expires: 7, path: "/" });
     setStoredName(username);
     setUsername("");
   };
 
   const handleDelete = () => {
-    Cookies.remove("username");
+    Cookies.remove("username", { path: "/" });
     setStoredName("");
   };
 

@@ -1,49 +1,73 @@
-import CLass1 from './Class1';
-import Function1 from './Function1';
-import Login from './Login';
-import Car from './Car';
-import Lifecycle from './Lifecycle';
-import Parent from './PropsChildren';
-import Movies from './Mapping';
-import Form from './Forms';
-import Formsmultiple from './Formsmultiple';
-import MyForm from './checkbox';
-import Radio from './Radio';
-import { Suspense,lazy } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Parentclass from './parent';
-import Search from './Search';
-import UseEff from './UseEff';
-import Sustrans from './suspenceTransition';
-import Button from './button';
-import ToggleSwitch from './ToggleSwitch';
-import TodoApp from './todo';
-import LoginForm from './UserLogin';
-import LiveInput from './Livetext';
-import RandomColorButton from './randomcolour';
-import UsernameStorage from './localstorage';
-import SessionLogin from './sessionstorage';
-import Component1 from './UseContext';
-import CookieUsername from './cookies';
+import LoginPage from "./Task/TaskLogin";
+import Home from "./Task/home";
+import ProtectedRoute from "./Task/protected";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const Carss=lazy(()=>import('./Lazy'));
-const MyFruits = lazy(() => import('./Suspence')); 
-
-function Home() {
-  return <h1>Home Page</h1>;
-}
-
-function About() {
-  return <h1>About Page</h1>;
-}
-
-function Contact() {
-  return <h1>Contact Page</h1>;
-}
 function App(){
+  function RedirectToLogin() {
+  Cookies.remove("sessionToken");
+  return <Navigate to="/LoginPage" />;
+}
+  return(
+    <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<RedirectToLogin/>}/>
+      <Route path="/LoginPage" element={<LoginPage/>}/>
+      <Route path="/Home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+      </Routes> 
+    </BrowserRouter>
+  )
+}
+export default App
 
-    return(
-      <CookieUsername/>
+
+// import CLass1 from './Class1';
+// import Function1 from './Function1';
+// import Login from './Login';
+// import Car from './Car';
+// import Lifecycle from './Lifecycle';
+// import Parent from './PropsChildren';
+// import Movies from './Mapping';
+// import Form from './Forms';
+// import Formsmultiple from './Formsmultiple';
+// import MyForm from './checkbox';
+// import Radio from './Radio';
+// import { Suspense,lazy } from 'react';
+// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+// import Parentclass from './parent';
+// import Search from './Search';
+// import UseEff from './UseEff';
+// import Sustrans from './suspenceTransition';
+// import Button from './button';
+// import ToggleSwitch from './ToggleSwitch';
+// import TodoApp from './todo';
+// import LoginForm from './UserLogin';
+// import LiveInput from './Livetext';
+// import RandomColorButton from './randomcolour';
+// import UsernameStorage from './localstorage';
+// import SessionLogin from './sessionstorage';
+// import Component1 from './UseContext';
+// import CookieUsername from './cookies';
+
+// const Carss=lazy(()=>import('./Lazy'));
+// const MyFruits = lazy(() => import('./Suspence')); 
+
+// function Home() {
+//   return <h1>Home Page</h1>;
+// }
+
+// function About() {
+//   return <h1>About Page</h1>;
+// }
+
+// function Contact() {
+//   return <h1>Contact Page</h1>;
+// }
+// function App(){
+
+//     return(
+//       <CookieUsername/>
 
       // <BrowserRouter>
       //           <div>
@@ -89,19 +113,20 @@ function App(){
       //   <RandomColorButton/>
       //   {/* <UsernameStorage/>
       //   <SessionLogin/>
-
-        
       //    <Component1/> */}
-
-        
       // </div>
       //     </BrowserRouter>
+//     );
+//   }
+// export default App;
 
-    );
-  }
 
 
-export default App;
+
+
+
+
+
 
 // import { BrowserRouter, Routes, Route, Link, Outlet } from 'react-router-dom';
 
