@@ -17,6 +17,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import CloudUploadSharpIcon from '@mui/icons-material/CloudUploadSharp';
 import MailIcon from "@mui/icons-material/Mail";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Paper from "@mui/material/Paper";
@@ -121,7 +122,7 @@ function HomePage() {
   const menuItems = [
     { text: "Component 1", icon: <InboxIcon /> },
     { text: "Component 2", icon: <MailIcon /> },
-    { text: "Component 3", icon: <SettingsIcon /> },
+    { text: "Component 3", icon: <CloudUploadSharpIcon /> },
   ];
 
   return (
