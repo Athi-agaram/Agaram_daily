@@ -190,3 +190,63 @@
 //     );
 //   }
 // export default App;
+
+
+
+// import AxiosExample from './Exercises/Axios';
+// import FetchExample from './Exercises/FetchandAxios';
+
+
+// function App(){
+
+//     return(
+//       <>
+//      <FetchExample/>
+//      <AxiosExample/>
+//      </>
+//     );
+//   }
+// export default App;
+
+
+
+// // import React, { useEffect } from "react";
+// // import axios from "axios";
+
+// // function App() {
+
+// //   // Define the async function inside useEffect
+// //   useEffect(() => {
+// //     async function getData() {
+// //       const params = {
+// //         userId: 1,
+// //         title: "HelloWorld"
+// //       };
+
+// //       try {
+// //         // Axios automatically adds params to the URL
+// //         const response = await axios.get(
+// //           "https://jsonplaceholder.typicode.com/posts",
+// //           { params }
+// //         );
+// //         console.log("GET URL:", response.config.url); // full URL
+// //         console.log("GET Response Data:", response.data);
+// //       } catch (error) {
+// //         console.error("Error:", error);
+// //       }
+// //     }
+
+// //     // Call the async function
+// //     getData();
+
+// //   }, []); // Empty dependency array → runs once on mount
+
+// //   return (
+// //     <div>
+// //       <h1>Axios GET Example</h1>
+// //       <p>Open the console to see the GET request and data.</p>
+// //     </div>
+// //   );
+// // }
+
+// // export default App;
