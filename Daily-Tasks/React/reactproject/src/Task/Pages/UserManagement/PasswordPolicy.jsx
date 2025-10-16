@@ -175,7 +175,7 @@ export default function PasswordPolicy() {
                 "Minimum number of Numeric characters",
                 "Minimum number of Special characters",
               ].map((label, idx) => (
-                <Box key={idx} sx={{ display: "flex", flexDirection: "column" }}>
+                <Box key={idx} sx={{ display: "flex", flexDirection: "column", ml: 8 }}>
                   <Typography sx={{ fontSize: 12, color: "#5f5f5f", mb: 0.5,fontWeight:"600" }}>
                     {label}
                   </Typography>

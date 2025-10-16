@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Box, List, ListItem, ListItemButton, ListItemIcon, Paper, Typography, IconButton } from "@mui/material";
+import { Box, List, ListItem, ListItemButton, ListItemIcon, Paper, Typography, IconButton, ClickAwayListener } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ArrowLeftSharpIcon from '@mui/icons-material/ArrowLeftSharp';
 
 // Sidebar icons
 import InsertDriveFileSharpIcon from "@mui/icons-material/InsertDriveFileSharp";
@@ -21,63 +22,14 @@ const topBarHeight = 60;
 const SIDEBAR_BLUE = "#1A57A6";
 
 const menuItems = [
-  {
-    text: "FTP Data View",
-    icon: <InsertDriveFileSharpIcon />,
-    subItems: ["Data Explorer", "Search Server Data"],
-  },
-  {
-    text: "Lock Settings",
-    icon: <LockIcon />,
-    subItems: ["Instrument Lock Settings"],
-  },
-  {
-    text: "Scheduler",
-    icon: <CalendarMonthSharpIcon />,
-    subItems: [
-      "Data Scheduler",
-      "View Edit Scheduler",
-      "Monitor Scheduler",
-      "Local File Delete Scheduler",
-      "Server File Delete Scheduler",
-      "Download Scheduler",
-      "Client Service Monitor",
-    ],
-  },
-  {
-    text: "Masters",
-    icon: <AccountTreeSharpIcon />,
-    subItems: ["Base Master", "Tags and Templates", "Parent Parser Key"],
-  },
-  {
-    text: "Storage",
-    icon: <BackupSharpIcon />,
-    subItems: ["Configuration", "Rights"],
-  },
-  {
-    text: "User Management",
-    icon: <PersonSharpIcon />,
-    subItems: ["User Management", "Password Policy"],
-  },
-  {
-    text: "Log History",
-    icon: <FindInPageSharpIcon />,
-    subItems: [
-      "Audit Trail History",
-      "Download Logs",
-      "Upload Logs",
-      "Restore Logs",
-      "Server & Local File Delete",
-      "Logs",
-      "Scheduler Config. Logs",
-      "Instrument",
-    ],
-  },
-  {
-    text: "Settings",
-    icon: <SettingsIcon />,
-    subItems: ["Preferences", "License Information", "Workflow Setup", "Audit Trail Configuration", "Maintenance"],
-  },
+  { text: "FTP Data View", icon: <InsertDriveFileSharpIcon />, subItems: ["Data Explorer", "Search Server Data"] },
+  { text: "Lock Settings", icon: <LockIcon />, subItems: ["Instrument Lock Settings"] },
+  { text: "Scheduler", icon: <CalendarMonthSharpIcon />, subItems: ["Data Scheduler","View Edit Scheduler","Monitor Scheduler","Local File Delete Scheduler","Server File Delete Scheduler","Download Scheduler","Client Service Monitor"] },
+  { text: "Masters", icon: <AccountTreeSharpIcon />, subItems: ["Base Master","Tags and Templates","Parent Parser Key"] },
+  { text: "Storage", icon: <BackupSharpIcon />, subItems: ["Configuration","Rights"] },
+  { text: "User Management", icon: <PersonSharpIcon />, subItems: ["User Management","Password Policy"] },
+  { text: "Log History", icon: <FindInPageSharpIcon />, subItems: ["Audit Trail History","Download Logs","Upload Logs","Restore Logs","Server & Local File Delete","Logs","Scheduler Config. Logs","Instrument"] },
+  { text: "Settings", icon: <SettingsIcon />, subItems: ["Preferences","License Information","Workflow Setup","Audit Trail Configuration","Maintenance"] },
 ];
 
 export default function SidebarWithFlyout({ selectedIndex, setSelectedIndex, setSelectedSub }) {
@@ -95,7 +47,6 @@ export default function SidebarWithFlyout({ selectedIndex, setSelectedIndex, set
     setSelectedSubInternal(i);
     setSelectedSub?.(i);
     setPanelOpen(false);
-    // ❌ NO navigation; main content updates dynamically in HomePage
   };
 
   const togglePanel = () => setPanelOpen((v) => !v);
@@ -115,88 +66,107 @@ export default function SidebarWithFlyout({ selectedIndex, setSelectedIndex, set
             flexDirection: "column",
             justifyContent: "space-between",
             zIndex: 1500,
+            overflow:"hidden"
           },
         }}
       >
-        <List sx={{ mt: 0.5 }}>
+        <List sx={{ mt: 0 }}>
           {menuItems.map((item, index) => {
             const selected = selectedIndex === index;
             return (
-              <ListItem key={item.text} disablePadding sx={{ mb: 1.5 }}>
+              <ListItem key={item.text} disablePadding sx={{ mb: 0 }}>
                 <ListItemButton
                   onClick={() => handleSelect(index)}
                   sx={{
                     justifyContent: "center",
-                    px: 2,
-                    py: 1.2,
+                    px: 0,
+                    py: 0,
                     backgroundColor: "transparent",
+                    position: "relative",
+                    minHeight: "60px",
                   }}
                 >
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
                       justifyContent: "center",
-                      color: selected ? "white" : "rgba(238, 238, 238, 0.7)",
+                      color: selected ? "#ffffff" : "#dadadaff",
                       "&:hover": { color: "#ffffff" },
                       transition: "color 0.2s",
                     }}
                   >
                     {React.cloneElement(item.icon, { fontSize: "large", sx: { fontSize: 25 } })}
                   </ListItemIcon>
+
+                  {/* Arrow always visible */}
+                  {selected && (
+                    <ArrowLeftSharpIcon
+                      sx={{
+                        position: "absolute",
+                        right: -17,
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "#dadadaff",
+                        fontSize: 43,
+                      }}
+                    />
+                  )}
                 </ListItemButton>
               </ListItem>
             );
           })}
         </List>
 
-        <Box sx={{ mb: 2, px: 1, display: "flex", justifyContent: "center" }}>
+        <Box sx={{ mb: 0, px: 0, display: "flex", justifyContent: "center" }}>
           <AccountCircleIcon sx={{ color: "white", fontSize: 38 }} />
         </Box>
       </MuiDrawer>
 
-      {/* Flyout Menu */}
+      {/* Flyout Menu with ClickAwayListener */}
       {panelOpen && (
-        <Paper
-          elevation={0}
-          sx={{
-            position: "absolute",
-            left: drawerWidthCollapsed,
-            top: 0,
-            height: "100vh",
-            width: flyoutWidth,
-            p: 2,
-            bgcolor: "#f1f3f5",
-            borderLeft: "1px solid rgba(0,0,0,0.06)",
-            zIndex: 1499,
-            pt: `${topBarHeight - 20}px`,
-            boxSizing: "border-box",
-          }}
-        >
-          <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 600 }}>
-            {menuItems[selectedIndex]?.text}
-          </Typography>
-          <List>
-            {menuItems[selectedIndex]?.subItems?.map((sub, i) => (
-              <ListItem key={i} disablePadding>
-                <ListItemButton
-                  onClick={() => handleSubSelect(i)} // ✅ only update state, no navigate
-                  sx={{
-                    fontWeight: selectedSubInternal === i ? "700" : "400",
-                    backgroundColor: selectedSubInternal === i ? "#e6e9ec" : "transparent",
-                    mb: 1,
-                    borderRadius: "none",
-                    "&:hover": { bgcolor: "#eaeef2" },
-                    color: "black",
-                  }}
-                >
-                  <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "#464545ff" }}>
-                    {sub}
-                  </Typography>
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
+        <ClickAwayListener onClickAway={() => setPanelOpen(false)}>
+          <Paper
+            elevation={0}
+            sx={{
+              position: "absolute",
+              left: drawerWidthCollapsed,
+              top: 0,
+              height: "100vh",
+              width: flyoutWidth,
+              p: 2,
+              bgcolor: "#f1f3f5",
+              borderLeft: "1px solid rgba(0,0,0,0.06)",
+              zIndex: 1499,
+              pt: `${topBarHeight - 20}px`,
+              boxSizing: "border-box",
+            }}
+          >
+            <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 600 }}>
+              {menuItems[selectedIndex]?.text}
+            </Typography>
+            <List>
+              {menuItems[selectedIndex]?.subItems?.map((sub, i) => (
+                <ListItem key={i} disablePadding>
+                  <ListItemButton
+                    onClick={() => handleSubSelect(i)}
+                    sx={{
+                      fontWeight: selectedSubInternal === i ? "700" : "400",
+                      backgroundColor: selectedSubInternal === i ? "#e6e9ec" : "transparent",
+                      mb: 1,
+                      borderRadius: "none",
+                      "&:hover": { bgcolor: "#eaeef2" },
+                      color: "black",
+                    }}
+                  >
+                    <Typography sx={{ fontSize: "12px", fontWeight: 600, color: "#464545ff" }}>
+                      {sub}
+                    </Typography>
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </ClickAwayListener>
       )}
 
       {/* Toggle Chevron */}

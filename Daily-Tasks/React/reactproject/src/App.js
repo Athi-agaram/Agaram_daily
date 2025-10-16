@@ -1,7 +1,7 @@
 import LoginPage from "./Task/Login";
 import ProtectedRoute from "./Task/protected";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./Task/Components/Layouts/MainLayout/home";
+import HomePage from "./Task/Components/MainLayout/home";
 // import Component1 from "./Components/Component1";
 // import Component2 from "./Components/Component2";
 // import Component3 from "./Components/Component3";

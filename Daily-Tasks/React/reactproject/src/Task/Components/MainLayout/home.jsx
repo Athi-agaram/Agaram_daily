@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import TopBar from "../Topbar";
-import SidebarWithFlyout from "../sidebar";
+import TopBar from "../Layouts/Topbar";
+import SidebarWithFlyout from "../Layouts/sidebar";
 
 // FTP Pages
-import DataExplorer from "../../../FTP/DataExplorer";
-import ServerData from "../../../FTP/DataExplorerPages/ServerData";
-import TemplateView from "../../../FTP/DataExplorerPages/TemplateView";
-import DataLogger from "../../../FTP/DataExplorerPages/DataLogger";
+import DataExplorer from "../../Pages/FTP/DataExplorer";
 
 // User Management Pages
-import UserManagement from "../../../UserManagement/UserManagement";
-import PasswordPolicy from "../../../UserManagement/PasswordPolicy";
+import UserManagement from "../../Pages/UserManagement/UserManagement";
+import PasswordPolicy from "../../Pages/UserManagement/PasswordPolicy";
 
 export default function HomePage() {
   const [selectedIndex, setSelectedIndex] = useState(0);
