@@ -1,3 +1,5 @@
+package JDBC;
+
 import java.sql.*;
  
 public class MSSQLExample {
@@ -66,16 +68,17 @@ public class MSSQLExample {
                                    ", Name: " + rs.getString("name") +
                                    ", Salary: " + rs.getDouble("salary"));
             }
- 
             // 1️⃣1️⃣ Close connection
             rs.close();
             stmt.close();
             con.close();
             System.out.println("\nConnection closed.");
+
  
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }
  
